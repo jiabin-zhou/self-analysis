@@ -1,0 +1,50 @@
+
+1、创建
+	git init  创建一个空的git仓库 / 初始化现有仓库
+
+
+2、配置  git config
+	用户信息
+		git config [-–local|–-global|–-system] user.name "用户名"
+		git config [-–local|–-global|–-system] user.email 邮箱
+
+	添加配置 --add
+		git config [–-local|–-global|-–system] –-add section.key value  默认--local
+	
+	删除配置 --unset
+		git config [-–local|–-global|–-system] –-unset section.key
+	
+	颜色 color
+		git config [-–local|–-global|–-system] color.ui true
+		
+	配置命令别名
+	example：
+		git config --global alias.st status  对于当前用户，将status替换成st
+		
+	git config --list 查看所有配置
+	git config <key>  查看git的某一项配置
+
+	
+3、忽略文件
+	将要忽略的文件名写入 .gitignore文件
+	example：
+		Thumbs.db   忽略Thumbs.db文件
+		*.egg		忽略.egg后缀的文件
+		
+	强制添加被忽略文件
+		git add -f 文件名
+		
+
+4、添加文件到暂存区 git add
+	git add -u [<path>]  把git跟踪的文件的改动添加到暂存区，不处理不被跟踪文件  
+	git add -A [<path>]  把git跟踪的文件的改动添加到暂存区，包括不被跟踪文件
+
+
+5、提交暂存区文件  git commit
+	git commit -m "备注"
+	
+	
+	
+	
+
+	
