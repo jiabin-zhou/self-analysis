@@ -46,7 +46,10 @@
 5、提交暂存区文件  git commit
 	git commit -m "备注"
 	
-	
+6、github
+	git remote add origin 远程库地址          关联远程库
+	git pull --rebase origin master           远程库与本地同步合并
+	git push -u origin master				  推送本地主分支到远程库
 	
 	
 
