@@ -28,8 +28,11 @@
 3、忽略文件
 	将要忽略的文件名写入 .gitignore文件
 	example：
-		Thumbs.db   忽略Thumbs.db文件
+		Thumbs.db	忽略Thumbs.db文件
 		*.egg		忽略.egg后缀的文件
+		*hello		忽略hello结尾的文件
+		hello*		忽略hello开头的文件
+		hello?		忽略hello后附加一个字符的文件
 		
 	强制添加被忽略文件
 		git add -f 文件名
