@@ -1,7 +1,5 @@
 import scrapy
 from tutorial.items import TutorialItem
-from scrapy.spiders import CrawlSpider, Rule
-from scrapy.linkextractors import LinkExtractor
 from scrapy.http.request.form import FormRequest
 import json
 import re
