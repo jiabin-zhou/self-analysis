@@ -3,6 +3,7 @@
 	git init  创建一个空的git仓库 / 初始化现有仓库
 
 
+	
 2、配置  git config
 	用户信息
 		git config [-–local|–-global|–-system] user.name "用户名"
@@ -25,6 +26,7 @@
 	git config <key>  查看git的某一项配置
 
 	
+	
 3、忽略文件
 	将要忽略的文件名写入 .gitignore文件
 	example：
@@ -37,21 +39,75 @@
 	强制添加被忽略文件
 		git add -f 文件名
 		
+		
 
 4、添加文件到暂存区 git add
 	git add -u [<path>]  把git跟踪的文件的改动添加到暂存区，不处理不被跟踪文件  
 	git add -A [<path>]  把git跟踪的文件的改动添加到暂存区，包括不被跟踪文件
 
+	
 
 5、提交暂存区文件  git commit
 	git commit -m "备注"
+
 	
-6、github
+6、分支
+	git checkout -b 分支名  创建并切换到分支
+		相当于 git branch   分支名  创建分支
+			   git checkout 分支名  切换到分支
+	
+	git branch  查看当前分支
+	
+	git checkout -b dev origin/dev  创建远程origin的dev分支到本地
+	git branch --set-upstream 本地分支名 origin/本地分支名（origin/本地分支名  是本地分支对应的远程分支）
+	
+	git merge 分支名  将指定分支与当前分支合并
+	
+	git merge --no-ff -m "merge with no-ff" 分支名  
+		--no-ff禁用fast forward（强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样从分支历史上就可以看出分支信息）
+	
+	git branch -d 分支名  删除指定分支（-D强制删除分支）
+	
+	git stash 存储工作区状态
+	git stash list  查看存储的工作状态
+	恢复工作区状态：
+		一、git stash apply 恢复
+			git stash drop  删除存储
+		二、git stash pop   恢复并删除
+
+	
+7、github
 	git remote add origin 远程库地址          关联远程库
 	git pull --rebase origin master           远程库与本地同步合并
 	git push -u origin master				  推送本地主分支到远程库
+	
+	git clone git@github.com:jiabin-zhou/jiabin-zhou.git  克隆
 	
 	提交到远程库的问题
 	远程库做修改导致push失败:pull远程服务器最新的改动更新到本地  push上传到远程库
 
 	
+	
+add:
+	git log   查看提交日志
+		--pretty=oneline   按提交时间显示commit id和备注
+		--graph --pretty=oneline --abbrev-commit  分支合并情况
+	
+	git reflog  命令记录日志
+		
+	git reset 版本退回
+		--hard HEAD^   退回上一个版本
+		--hard commit id   退回到指定commit id版本
+		
+	git status  查看状态
+	
+	git diff HEAD  查看工作区与版本库的区别   
+		-- 文件名  查看指定文件工作区与版本库的区别
+		
+	git checkout -- 文件名   丢弃工作区修改
+		文件自修改后还没有被放到暂存区，撤销修改就回到和版本库一模一样的状态
+		文件已经添加到暂存区后，又作了修改，撤销修改就回到添加到暂存区后的状态
+	
+	git reset HEAD 文件名   丢弃暂存区的修改
+	
+	git rm -- 文件名   从版本库中删除文件
