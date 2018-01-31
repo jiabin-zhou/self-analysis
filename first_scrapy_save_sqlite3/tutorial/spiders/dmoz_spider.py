@@ -6,7 +6,6 @@ import re
 
 class DmozSpider(scrapy.Spider):
     name = 'dmoz'
-    # allowed_domains = ['comic.kukudm.com']
     urls=[]
     for appid in ['xfm_yuanping04','guanglian05','guanglian07']:
         #url需要传递参数实现指定日期、渠道等的查询,为了安全...url部分做替换处理....
@@ -17,9 +16,6 @@ class DmozSpider(scrapy.Spider):
         return [scrapy.FormRequest('http://xxx.xx.xxx.xx:xxxx/login',
                                         formdata={'username':'用户名'},
                                         callback=self.after_login)]
-
-    # def parse(self, response):
-    #     return FormRequest.from_response(response,formdata={'username':'haizhong.chu@joyreach.com'},callback=self.after_login)
 
     def after_login(self,response):
         print(response.body.decode('utf-8'))
