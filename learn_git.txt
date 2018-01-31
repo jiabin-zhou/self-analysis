@@ -51,6 +51,7 @@
 	git pull --rebase origin master           远程库与本地同步合并
 	git push -u origin master				  推送本地主分支到远程库
 	
-	
+	提交到远程库的问题
+	远程库做修改导致push失败:pull远程服务器最新的改动更新到本地  push上传到远程库
 
 	
