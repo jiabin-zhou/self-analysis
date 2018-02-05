@@ -1,0 +1,37 @@
+
+
+实现模型变更的三个步骤：
+修改模型（在models.py文件中）。
+运行python manage.py makemigrations  为这些修改创建迁移文件
+运行python manage.py migrate  将这些改变更新到数据库中。
+
+
+python manage.py sqlmigrate polls 0001
+sqlmigrate命令并不会在你的数据库上真正运行迁移文件 —— 它只是把Django 认为需要的SQL打印在屏幕上以让你能够看到
+
+
+django.template.loader
+get_template（template_name，using = None）[source] 
+	该函数使用给定的名称加载模板并返回一个Template 对象.
+	真正的返回值类型取决于那个用来加载模版的后台引擎。 每个后台都有各自的 Template类。
+	get_template()尝试获取每个模板直到有一个成功满足。 如果模板不能成功找到，将会抛出TemplateDoesNotExist
+	
+
+render(request, template_name, context=None, content_type=None, status=None, using=None)[source]
+	结合一个给定的模板和一个给定的上下文字典，并返回一个渲染后的 HttpResponse 对象。
+	必需参数
+	request			该request用于生成response
+	template_name	要使用的模板的完整名称或者模板名称的一个序列。 如果给出的是一个序列，将使用存在的第一个模板。 关于如何查找模板的更多信息请参见 template loading documentation 。
+	
+	可选参数
+	context			添加到模板上下文的一个字典。 默认是一个空字典。 如果字典中的某个值是可调用的，视图将在渲染模板之前调用它。
+	content_type	用于生成的文档的MIME类型。 默认为DEFAULT_CONTENT_TYPE设置的值。
+	status			响应的状态代码。 默认为200。
+	using			用于加载模板使用的模板引擎的NAME。
+	
+
+get_object_or_404()
+	将一个Django模型作为它的第一个参数，任意数量的关键字参数作为它的第二个参数，它会将这些关键字参数传递给模型管理器中的get() 函数。 如果对象不存在，它就引发一个 Http404异常。
+	
+
+
