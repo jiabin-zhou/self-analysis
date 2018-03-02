@@ -1,0 +1,25 @@
+mysql
+
+
+启动mysql服务
+net start mysql57
+
+
+链接数据库
+mysql -u root -p
+
+
+停止mysql服务
+net stop mysql57
+
+
+#创建mysql_test数据库
+CREATE DATABASE mysql_test;
+
+显示所有库
+show databases;
+
+使用库
+use mysql_test;
+
+然后..增删改查......

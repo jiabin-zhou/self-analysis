@@ -34,4 +34,95 @@ get_object_or_404()
 	将一个Django模型作为它的第一个参数，任意数量的关键字参数作为它的第二个参数，它会将这些关键字参数传递给模型管理器中的get() 函数。 如果对象不存在，它就引发一个 Http404异常。
 	
 
+old:<li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+new:<li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
+polls.urls模块的url()函数中定义了name参数，可以通过使用{% url %}模板标签来移除URL配置中定义的特定的URL的依赖
+多app时，app的urls.py继续添加app_name来设置应用程序命名空间,{%url 'app_name:detail'%}
 
+
+
+AdminSite界面配置
+（一）重定义字段顺序：
+修改对应应用目录下的admin.py
+class PollAdmin(admin.ModelAdmin):
+    fields = ['pub_date', 'question']  # 调整成实际需求的顺序
+admin.site.register(Poll, PollAdmin)
+
+（二）为字段进行分组
+class PollAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('group1', {'fields': ['question']}),    # group1
+        ('group2', {'fields': ['pub_date']}),    # group2
+    ]
+这里如果group1，group2替换成中文就会出现显示不了的问题，如何显示中文是个问题?
+（三）将字段组进行初始隐藏显示
+class PollAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('group1', {'fields': ['question']}),    
+        ('group2', {'fields': ['pub_date'], 'classes': ['collapse']}),   # 设置为可折叠 
+    ]
+
+（四）设置子对象并设计成内联编辑
+1、方法1
+class ChoiceInline(admin.StackedInline):          # 定义内联对象
+    model = Choice
+    extra = 3
+    
+class PollAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('group1', {'fields': ['question']}),    
+        ('group2', {'fields': ['pub_date'], 'classes': ['collapse']}),    
+    ]
+    inlines = [ChoiceInline]                     # 定义子对象的引用            
+2、方法2(更加紧凑)
+class ChoiceInline(admin.TabularInline):      #  StackedInline or TabularInline
+    model = Choice
+    extra = 3
+（五）设置子对象并设计成内联编辑    
+class PollAdmin(admin.ModelAdmin):
+    list_display = ('question', 'pub_date')   # 定义列表中显示的字段
+    fieldsets = [
+        ('group1', {'fields': ['question']}),    
+        ('group2', {'fields': ['pub_date'], 'classes': ['collapse']}),    
+    ]
+    inlines = [ChoiceInline]
+
+（六）通过函数生成虚拟字段
+models.py:
+class Poll(models.Model):
+    ... ...
+    def was_published_recently(self):               # 通过函数定义虚拟字段
+        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+    was_published_recently.admin_order_field = 'pub_date'  # 指定排序字段
+    was_published_recently.boolean = True                  # 如果指定了这个字段显示的时候体现为图表，比较美观
+    was_published_recently.short_description = 'Published recently?'  # 重定义字段显示名称,但是非数字段似乎不生效
+admin.py:
+class PollAdmin(admin.ModelAdmin):
+    list_display = ('question', 'pub_date', 'was_published_recently')
+
+问题：这里存在一个问题就模型定义和界面定义出现了混用。
+
+（七）增加快速过滤器
+class PollAdmin(admin.ModelAdmin):
+    ... ... 
+    list_filter = ['pub_date']         # 根据pub_date进行快速过滤
+    ... ...
+
+（八）设置对象的默认显示名称
+class Poll(models.Model):
+    ... ...
+    def __unicode__(self):
+        return self.question
+
+（九）为字段增加搜索功能
+class PollAdmin(admin.ModelAdmin):
+    ... ...
+    search_fields = ['question']
+    ... ...
+
+（十）增加日期下钻过滤(date drill down)
+class PollAdmin(admin.ModelAdmin):
+    ... ...
+    date_hierarchy = 'pub_date'
+    ... ...
+	
