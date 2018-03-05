@@ -1,0 +1,33 @@
+下载包地址：https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted
+
+
+文章地址：http://blog.csdn.net/xdygzsxg/article/details/53885786
+
+
+Pillow-3.4.2-cp35-cp35m-win_amd64.whl is not a supported wheel on this platform解决办法
+
+
+可能的原因1：安装的不是对应python版本的库，下载的库名中cp35代表python3.5,其它同理。
+可能的原因2：这个是我遇到的情况（下载的是对应版本的库，然后仍然提示不支持当前平台）
+　　我下载到的pillow库文件名：
+Pillow-3.4.2-cp35-cp35m-win_amd64.whl
+　　使用pip安装(在命令行中):
+pip install Pillow-3.4.2-cp35-cp35m-win_amd64.whl
+　　报错：***  is not a supported wheel on this platform，通过csdn上面一个帖子成功解决问题。
+　　方法：在cmd后中输入import pip; print(pip.pep425tags.get_supported())可以获取到pip支持的文件名还有版本，我这里如下：
+
+C:\>python
+Python 3.5.2 (v3.5.2:4def2a2901a5, Jun 25 2016, 22:18:55) [MSC v.1900 64 bit (AM
+D64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import pip
+>>> print(pip.pep425tags.get_supported())
+[('cp35', 'cp35m', 'win_amd64'), ('cp35', 'none', 'win_amd64'), ('py3', 'none',
+'win_amd64'), ('cp35', 'none', 'any'), ('cp3', 'none', 'any'), ('py35', 'none',
+'any'), ('py3', 'none', 'any'), ('py34', 'none', 'any'), ('py33', 'none', 'any')
+, ('py32', 'none', 'any'), ('py31', 'none', 'any'), ('py30', 'none', 'any')]
+>>>
+
+　　通过这里可以发现上面下载的文件名格式是不支持的，修改为：Pillow-3.4.2-cp35-none-win_amd64.whl即可成功安装。
+　　其它的库也同理可以成功安装，不过也请注意库的依赖。
+　　（参考帖子网址：http://www.cnblogs.com/nice-forever/p/5371906.html）
