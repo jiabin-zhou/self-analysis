@@ -35,3 +35,7 @@
 	#多条件过滤，结果一致
 	df.loc[df['col1'] == 'c'].loc[df['col2'] > 1]
 	df[(df['col1'] == 'c')&(df['col2'] > 1)]
+
+
+#替换某一列中指定值
+df3[1].replace([2,3,4],[200,300,400],inplace=True)#1列
