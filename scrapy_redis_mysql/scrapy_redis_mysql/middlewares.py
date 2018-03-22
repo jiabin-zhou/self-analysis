@@ -12,7 +12,7 @@ class RandomProxy(object):
         self.proxies=PROXIES
     def process_request(self,request,spider):
         request.meta['proxy'] = "http://" + random.choice(self.proxies)['ip_port']
-
+        
 PROXIES = [
     {'ip_port': '111.8.60.9:8123'},
     {'ip_port': '101.71.27.120:80'},

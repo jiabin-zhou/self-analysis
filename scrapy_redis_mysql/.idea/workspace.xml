@@ -55,8 +55,8 @@
       <file leaf-file-name="middlewares.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scrapy_redis_mysql/middlewares.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="35" lean-forward="false" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+            <state relative-caret-position="266">
+              <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -111,8 +111,8 @@
         <option value="$PROJECT_DIR$/scrapy_redis_mysql/items.py" />
         <option value="$PROJECT_DIR$/scrapy_redis_mysql/pipelines.py" />
         <option value="$PROJECT_DIR$/scrapy_redis_mysql/spiders/download_text.py" />
-        <option value="$PROJECT_DIR$/scrapy_redis_mysql/middlewares.py" />
         <option value="$PROJECT_DIR$/scrapy_redis_mysql/settings.py" />
+        <option value="$PROJECT_DIR$/scrapy_redis_mysql/middlewares.py" />
       </list>
     </option>
   </component>
@@ -497,8 +497,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scrapy_redis_mysql/middlewares.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="35" lean-forward="false" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+        <state relative-caret-position="266">
+          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
           <folding />
         </state>
       </provider>
