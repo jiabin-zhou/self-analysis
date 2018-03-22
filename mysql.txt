@@ -23,6 +23,7 @@ use mysql_test;
 
 然后..增删改查......
 
+flush privileges刷新MySQL的系统权限相关表
 
 
 
